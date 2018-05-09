@@ -5,6 +5,7 @@
   <meta name="description" content="进阶15-表单的常用事件处理方式"/>
   <meta charset="utf-8">
   <title>进阶15-题目7</title>
+  <link rel="stylesheet" href="./master.css">
 </head>
 <body>
   <fieldset>
@@ -35,5 +36,55 @@
     </div>
     <div id="ct"></div>
   </fieldset>
+  
+  <script>
+    //当点击$btn 时，让 $btn 的背景色变为红色再变为蓝色
+    var $btn=$('#btn')
+    $btn.click(function(){
+      var $red=$(this).css({'background':'red'})
+      setTimeout(function(){
+        $red.css({'background':'blue'})
+      },1000)
+    })
+
+    //当窗口滚动时，获取垂直滚动距离
+    $(window).scroll(function() {
+      $('#scrolltop').text('垂直滚动距离：'+$(window).scrollTop() + 'px');
+      //.scroll()监听滚动事件；scrollTop()获取当前匹配元素垂直滚动条的位置
+    })
+
+    //当鼠标放置到$div 上，把$div 背景色改为红色，移出鼠标背景色变为白色
+    var $box=$('.box')
+    $box.mouseenter(function(){
+      $(this).addClass('hover')
+    })
+    $box.mouseleave(function(){
+      $(this).removeClass('hover')
+    })
+
+    //当鼠标激活 input 输入框时让输入框边框变为蓝色，当输入框内容改变时把输入框里的文字小写变为大写，当输入框失去焦点时去掉边框蓝色，控制台展示输入框里的文字
+    var $ipt=$('#ipt')
+    $ipt.focus(function(){
+      $(this).css({'border-color': 'blue'})
+    })//focus、mousedown也可以
+    $ipt.keyup(function(){
+      //$(this).css({'text-transform': 'uppercase'})
+      $(this).val(function(index, val){
+        return val.toUpperCase();
+      })
+    })
+    $ipt.blur(function(){
+      $this=$(this)
+      $this.css({'border-color': ''})
+      console.log($this.val()) 
+      //console.log($this.val().toUpperCase())
+    })
+
+    //当选择 select 后，获取用户选择的内容
+    $("#select").change(function(){
+      var $selected=$("#select").find("option:selected").text();
+      $('#ct').text($selected)
+    })
+  </script>
 </body>
 </html>
