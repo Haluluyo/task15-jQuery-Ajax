@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+  <link rel="stylesheet" href="./master.css">
+  <meta charset="utf-8">
+  <title>加载更多_jquery</title>
+</head>
+<body>
+ <div id="wrap">
+   <ul id="ct">
+     <li class="">内容1</li>
+     <li>内容2</li>
+   </ul>
+   <a id="load-more" href="#">加载更多</a>
+ </div>
+ <script>
+   var isDataArrive=true;
+   var curIndex=3;
+   var length=5;
+   /*
+   $('#load-more').click(function(event){
+     event.preventDefault();
+     var data=[];
+     for (var i=0; i<length; i++){
+       data.push('内容' + (parseInt(curIndex) + i))
+     }
+     console.log(data)
+     for(var j=0;j<length;j++){
+       $('#ct').append('<li>'+data[j]+'</li>')
+     }
+     curIndex+=length;
+   })  
+   */  
+	
+   $('#load-more').click(function(event){
+     event.preventDefault();
+     if(!isDataArrive){
+       return;
+     }
+     $.ajax({
+       url: '/getNewLi',
+       method: 'get',
+       data: {
+         idx: curIndex,
+         len: length
+       }
+     }).done(function(ret){
+       curIndex+=length
+       var data=JSON.parse(ret)
+       for(var i=0;i<length;i++){
+         $('#ct').append('<li>'+data[i]+'</li>')
+       }
+       isDataArrive=true;
+     }).fail(function(){
+       alert('系统异常！')
+     })
+     isDataArrive=false;
+   })
+
+   var $list=$('#ct');
+   $list.on('mouseenter','li',function(){
+     $(this).addClass('hover')
+   })
+   $list.on('mouseleave','li',function(){
+     $(this).removeClass('hover')
+   })
+ </script>
+</body>
+</html>
