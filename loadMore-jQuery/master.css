@@ -1,0 +1,25 @@
+#ct{
+  list-style: none;
+}
+#ct li{
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+#load-more{
+  display: block;
+  width: 80px;
+  margin: 10px auto;
+  padding: 8px 0;
+  border: 1px solid #e72727;
+  border-radius: 3px;
+  text-align: center;
+  color: #e27272;
+  text-decoration: none;
+  cursor: pointer;
+}
+.hover{
+  background: green;
+  color: #fff;
+}
