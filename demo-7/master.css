@@ -1,0 +1,46 @@
+body{
+  height: 1500px;
+  padding: 10px;
+}
+#btn{
+  width: 100px;
+  height: 30px;
+  margin: 15px;
+  cursor: pointer;
+}
+#scrolltop{
+  position: fixed;
+  top: 10px;
+  right: 100px;
+  width: 130px;
+  padding: 8px 10px;
+  border: 2px solid orange;
+  font-size: 18px;
+  color: orange;
+}
+.box{
+  width: 128px;
+  margin: 0 15px;
+  padding: 50px 0;
+  text-align: center;
+  border: 1px solid #bbb;
+  background: #fff;
+  cursor: pointer;
+}
+.hover{
+  background: red;
+}
+#ipt{
+  margin: 15px;
+  cursor: pointer;
+}
+#select{
+   margin: 10px 15px;
+  cursor: pointer;
+}
+#ct{
+   margin: 0 15px;
+}
+#btn:focus,#ipt:focus{
+   outline: none;
+ } 
